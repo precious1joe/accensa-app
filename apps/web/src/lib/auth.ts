@@ -2,7 +2,7 @@ import { SignJWT, jwtVerify } from 'jose';
 import { cookies } from 'next/headers';
 
 /**
- * No fallback secret — see the note in `src/middleware.ts`. A default committed to a
+ * No fallback secret — see the note in `apps/web/src/proxy.ts`. A default committed to a
  * public repository is a signing key everyone has, so a deployment missing the variable
  * would mint session tokens anyone could forge. Throwing is the correct failure: it is
  * loud, it happens on the first signing attempt, and it cannot be mistaken for working.

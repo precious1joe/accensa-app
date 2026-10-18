@@ -5,7 +5,7 @@ import { webhookSummary } from '@/lib/webhooks';
 
 export const dynamic = 'force-dynamic';
 
-/** Merchant-visible webhook delivery status. Session-authenticated via middleware. */
+/** Merchant-visible webhook delivery status. Session-authenticated via `apps/web/src/proxy.ts` which forwards `x-accensa-merchant`/`x-accensa-role` only for requests passing session verification (public paths like `/api/auth` are exempted). */
 export async function GET(request: Request) {
   if (!process.env.DATABASE_URL) {
     return NextResponse.json({ error: 'DATABASE_URL is not configured' }, { status: 500 });

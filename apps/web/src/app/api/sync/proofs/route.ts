@@ -33,9 +33,11 @@ export const dynamic = 'force-dynamic';
  * migration to a real zk-SNARK circuit implements the same interface and this
  * route does not change.
  *
- * Protected by session authentication via middleware, resolving to exactly
- * the merchant that owns this dashboard session — a signed-in merchant can
- * only submit proofs for themselves.
+ * Protected by session authentication via `apps/web/src/proxy.ts`, which forwards
+ * `x-accensa-merchant`/`x-accensa-role` only for requests that pass session verification,
+ * while public paths such as `/api/auth`, `/api/verify`, `/api/hook/`, `/api/receipts/`,
+ * `/api/inventory/` and `/api/status` are exempted. A signed-in merchant can only
+ * submit proofs for themselves.
  */
 export async function POST(request: Request) {
   if (!process.env.DATABASE_URL) {

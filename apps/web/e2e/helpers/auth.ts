@@ -14,8 +14,9 @@ const signingKey = new TextEncoder().encode(E2E_JWT_SECRET);
 /**
  * Mints a valid `accensa_session` cookie exactly the way
  * `apps/web/src/lib/auth.ts` does (HS256, `{ publicKey, expires }`, 24h).
- * The dashboard middleware verifies this cookie, so specs can visit
- * authenticated routes without driving the Freighter sign-in flow.
+ * `apps/web/src/proxy.ts` verifies this cookie and forwards `x-accensa-merchant`/`x-accensa-role`
+ * for non-exempted paths, so specs can visit authenticated routes without driving
+ * the Freighter sign-in flow.
  */
 export async function mintSessionCookie(
   publicKey = 'GAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWHF',

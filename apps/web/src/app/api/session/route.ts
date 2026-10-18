@@ -6,7 +6,7 @@ export const dynamic = 'force-dynamic';
 /**
  * Exposes the signed-in session's role to client components (#156).
  *
- * The middleware has already verified the session cookie and forwarded the
+ * `apps/web/src/proxy.ts` has already verified the session cookie and forwarded the
  * role as `x-accensa-role` before this route runs; this handler simply echoes
  * it back. Client components use it to hide admin-only actions (refunds,
  * settings) from viewer sessions — the server routes themselves enforce the
